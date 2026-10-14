@@ -120,7 +120,6 @@ function Separator() {
     </div>
   );
 }
-
 export default function Home() {
   const [now, setNow] = useState<number>(0);
 
@@ -176,35 +175,37 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-black bg-radial min-h-screen px-4 py-12">
+    <div className="flex flex-col flex-1 items-center justify-center bg-black bg-radial min-h-screen px-4 py-8 sm:py-12">
       {/* Main countdown */}
-      <div className="flex flex-col items-center mb-16">
+      <div className="flex flex-col items-center mb-10 sm:mb-16">
         <p className="text-xs uppercase tracking-[0.3em] text-zinc-500 mb-6">
           Final day of employment
         </p>
         <h1 className="text-sm font-medium text-zinc-400 mb-8 tracking-wide">
           March 20, 2027
         </h1>
-        <div className="flex items-start gap-4 sm:gap-8">
+        <div className="flex items-start gap-6 sm:gap-10">
           <CountdownNumber value={mainCountdown.days} label="Days" />
           <Separator />
           <CountdownNumber value={mainCountdown.hours} label="Hours" />
-          <Separator />
-          <CountdownNumber value={mainCountdown.minutes} label="Minutes" />
-          <Separator />
-          <div className="flex flex-col items-center">
-            <div className="text-[clamp(2.5rem,8vw,6rem)] font-bold tabular-nums tracking-tight leading-none glow animate-pulse-soft">
-              {String(mainCountdown.seconds).padStart(2, "0")}
-            </div>
-            <div className="text-xs uppercase tracking-[0.2em] text-zinc-500 mt-2">
-              Seconds
+          <div className="hidden sm:flex sm:items-start">
+            <Separator />
+            <CountdownNumber value={mainCountdown.minutes} label="Minutes" />
+            <Separator />
+            <div className="flex flex-col items-center">
+              <div className="text-[clamp(2.5rem,8vw,6rem)] font-bold tabular-nums tracking-tight leading-none glow animate-pulse-soft">
+                {String(mainCountdown.seconds).padStart(2, "0")}
+              </div>
+              <div className="text-xs uppercase tracking-[0.2em] text-zinc-500 mt-2">
+                Seconds
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Stats row */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-16 mb-16 w-full max-w-3xl">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-12 w-full max-w-3xl">
         {/* Weekdays left */}
         <div className="flex flex-col items-center text-center p-6 rounded-2xl border border-zinc-800/50 bg-zinc-900/20">
           <div className="text-4xl font-bold tabular-nums text-zinc-100 glow-sm">
@@ -250,11 +251,11 @@ export default function Home() {
           <h2 className="text-xs uppercase tracking-[0.3em] text-zinc-500 mb-6 text-center">
             Upcoming holidays
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-3">
             {upcomingHolidaysThisYear.map((h) => (
               <div
                 key={h.name + h.date.toISOString()}
-                className="flex items-center justify-between p-5 rounded-xl border border-zinc-800/50 bg-zinc-900/20"
+                className="flex items-center justify-between p-4 sm:p-5 rounded-xl border border-zinc-800/50 bg-zinc-900/20"
               >
                 <div>
                   <div className="text-sm font-medium text-zinc-200">
@@ -270,7 +271,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-2xl font-bold tabular-nums text-zinc-300 glow-sm">
+                  <div className="text-xl sm:text-2xl font-bold tabular-nums text-zinc-300 glow-sm">
                     {String(h.countdown.days).padStart(2, "0")}
                     <span className="text-xs text-zinc-500 ml-1">days</span>
                   </div>
